@@ -1,0 +1,28 @@
+## Ignore build results
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+*.sln.docstates
+
+## Visual Studio
+.vs/
+
+## MAUI Windows user cache
+*.db
+*.db-shm
+*.db-wal
+
+## Publish output
+publish/
+artifacts/
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+
+## Others
+Thumbs.db
+*.DS_Store
