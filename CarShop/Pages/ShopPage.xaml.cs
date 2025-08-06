@@ -2,7 +2,7 @@ using CarShop.ViewModels;
 
 namespace CarShop.Pages;
 
-public partial class ShopPage : ContentPage
+public partial class ShopPage : BasePage
 {
 	public ShopPage()
 	{

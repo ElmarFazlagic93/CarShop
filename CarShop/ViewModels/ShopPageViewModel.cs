@@ -2,7 +2,7 @@
 
 namespace CarShop.ViewModels
 {
-    public class ShopPageViewModel : BaseViewModel
+    public partial class ShopPageViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
 

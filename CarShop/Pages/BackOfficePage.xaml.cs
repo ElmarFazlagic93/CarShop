@@ -2,7 +2,7 @@ using CarShop.ViewModels;
 
 namespace CarShop.Pages;
 
-public partial class BackOfficePage : ContentPage
+public partial class BackOfficePage : BasePage
 {
 	public BackOfficePage()
 	{

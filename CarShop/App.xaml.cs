@@ -1,4 +1,5 @@
 ﻿using CarShop.Pages;
+using CarShop.Services;
 
 namespace CarShop
 {
@@ -10,11 +11,19 @@ namespace CarShop
         {
             InitializeComponent();
             Services = serviceProvider;
+
+            EnsureDatabaseInitialized();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new NavigationPage(new HomePage()));
+        }
+
+        private async void EnsureDatabaseInitialized()
+        {
+            var dbService = App.Services.GetRequiredService<IDatabaseService>();
+            await dbService.InitializeAsync();
         }
     }
 }

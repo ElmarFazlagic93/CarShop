@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CarShop.Pages.BackOfficePage"
-             Title="BackOfficePage">
-    <VerticalStackLayout Padding="20">
-        <Label Text="🛒 Back office Page - Coming Soon" FontSize="24" HorizontalOptions="Center" />
+<pages:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:CarShop.Pages"
+    xmlns:models="clr-namespace:CarShop.Models"
+    xmlns:viewmodels="clr-namespace:CarShop.ViewModels"
+    x:Class="CarShop.Pages.BackOfficePage"
+    x:Name="RootPage"
+    x:DataType="viewmodels:BackOfficePageViewModel"
+    Title="Back Office">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Button Text="➕ Add Item"
+                Command="{Binding AddItemCommand}" />
+
+        <CollectionView ItemsSource="{Binding Items}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodels:ItemViewModel">
+                    <!-- No x:DataType here to avoid runtime mismatch -->
+                    <Border Stroke="Gray"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Background="#FFF"
+                            Padding="10"
+                            Margin="5">
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EditCommand}" />
+                            </Grid.GestureRecognizers>
+
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Description}" FontSize="Small" />
+                                <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="Small" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
-</ContentPage>
+</pages:BasePage>

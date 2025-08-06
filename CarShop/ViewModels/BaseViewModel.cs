@@ -1,10 +1,14 @@
-﻿using System.ComponentModel;
+﻿using CarShop.Services;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace CarShop.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public partial class BaseViewModel : INotifyPropertyChanged, IViewModelOnAppearing, IViewModelOnDisappearing
     {
+        public virtual Task OnAppearingAsync() => Task.CompletedTask;
+        public virtual Task OnDisappearingAsync() => Task.CompletedTask;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>

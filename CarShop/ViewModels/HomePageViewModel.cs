@@ -1,15 +1,10 @@
 ﻿using CarShop.Pages;
 using CarShop.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CarShop.ViewModels
 {
-    public class HomePageViewModel : BaseViewModel
+    public partial class HomePageViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
 
