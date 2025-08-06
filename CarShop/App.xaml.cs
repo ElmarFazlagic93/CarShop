@@ -1,15 +1,20 @@
-﻿namespace CarShop
+﻿using CarShop.Pages;
+
+namespace CarShop
 {
     public partial class App : Application
     {
-        public App()
+        public static IServiceProvider Services { get; private set; } = null!;
+
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            Services = serviceProvider;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new Window(new NavigationPage(new HomePage()));
         }
     }
 }

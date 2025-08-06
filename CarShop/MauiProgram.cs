@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CarShop.Services;
+using CarShop.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace CarShop
 {
@@ -18,6 +20,14 @@ namespace CarShop
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Register services
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
+
+            // Register ViewModels
+            builder.Services.AddTransient<HomePageViewModel>();
+            builder.Services.AddTransient<ShopPageViewModel>();
+            builder.Services.AddTransient<BackOfficePageViewModel>();
 
             return builder.Build();
         }
