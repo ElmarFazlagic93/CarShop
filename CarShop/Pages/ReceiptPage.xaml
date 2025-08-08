@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="CarShop.Pages.ReceiptPage"
+                xmlns:pages="clr-namespace:CarShop.Pages"
+                xmlns:viewmodels="clr-namespace:CarShop.ViewModels"
+                xmlns:models="clr-namespace:CarShop.Models"
+                x:DataType="viewmodels:ReceiptPageViewModel"
+                Title="Autoservis Kapetan">
+
+    <Grid Padding="30" RowSpacing="15" ColumnSpacing="10"
+          RowDefinitions="Auto,Auto,*,Auto,Auto"
+          ColumnDefinitions="2*,2*,1*">
+
+        <!-- Row 0: Ime i prezime / Vozilo -->
+        <Entry Grid.Row="0" Grid.Column="0" Placeholder="Ime i prezime" Text="{Binding FullName}" />
+        <Entry Grid.Row="0" Grid.Column="1" Placeholder="Vozilo" Text="{Binding Vehicle}" />
+
+        <!-- Row 1: Godište / Broj tablica -->
+        <Entry Grid.Row="1" Grid.Column="0" Placeholder="Godište" Text="{Binding Year}" />
+        <Entry Grid.Row="1" Grid.Column="1" Placeholder="Broj tablica" Text="{Binding LicensePlate}" />
+
+        <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Source="logo.png" HeightRequest="200" WidthRequest="200" VerticalOptions="Start" HorizontalOptions="End" />
+
+        <!-- Row 2: Border with LIST spanning Column 0 and 1 only -->
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Stroke="Gray" Padding="10" MaximumHeightRequest="350">
+            <ScrollView>
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding DisplayItems}" Spacing="5">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:ReceiptItem">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="80" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Naziv -->
+                                <Label Grid.Column="0" Text="{Binding Name}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsHeader}" Value="True">
+                                            <Setter Property="FontAttributes" Value="Bold" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                                <!-- Opis -->
+                                <Label Grid.Column="1" Text="{Binding Description}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsHeader}" Value="True">
+                                            <Setter Property="FontAttributes" Value="Bold" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                                <!-- Količina -->
+                                <Label Grid.Column="2" Text="{Binding Quantity}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsHeader}" Value="True">
+                                            <Setter Property="FontAttributes" Value="Bold" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                                <!-- Cijena -->
+                                <Label Grid.Column="3" Text="{Binding Price}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsHeader}" Value="True">
+                                            <Setter Property="FontAttributes" Value="Bold" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+
+
+        <!-- Row 3: + Button in Column 1, aligned top-right -->
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Button Text="+" Command="{Binding AddItemCommand}"
+                    HorizontalOptions="End" VerticalOptions="Start" />
+        </Grid>
+
+        <!-- Row 4: Ukupno in Column 0, Buttons in Column 2 -->
+        <Label Grid.Row="4" Grid.Column="0" Text="{Binding TotalText}"
+               FontAttributes="Bold" FontSize="18" />
+
+        <HorizontalStackLayout Grid.Row="4" Grid.Column="2" HorizontalOptions="End">
+            <Button ImageSource="print.png" Command="{Binding PrintCommand}" Margin="5" />
+            <Button ImageSource="delete.png" Command="{Binding ClearCommand}" Margin="5" />
+        </HorizontalStackLayout>
+
+    </Grid>
+</pages:BasePage>

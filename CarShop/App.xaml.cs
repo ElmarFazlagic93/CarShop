@@ -1,5 +1,6 @@
 ﻿using CarShop.Pages;
 using CarShop.Services;
+using CarShop.ViewModels;
 
 namespace CarShop
 {
@@ -17,7 +18,7 @@ namespace CarShop
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new HomePage()));
+            return new Window(new NavigationPage(new ReceiptPage()));
         }
 
         private async void EnsureDatabaseInitialized()

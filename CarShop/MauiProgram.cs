@@ -24,13 +24,9 @@ namespace CarShop
             // Register services
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
-            builder.Services.AddSingleton<IItemService, ItemService>();
 
             // Register ViewModels
-            builder.Services.AddTransient<HomePageViewModel>();
-            builder.Services.AddTransient<ShopPageViewModel>();
-            builder.Services.AddTransient<BackOfficePageViewModel>();
-            builder.Services.AddTransient<ItemEditorPageViewModel>();
+            builder.Services.AddTransient<ReceiptPageViewModel>();
 
             return builder.Build();
         }
